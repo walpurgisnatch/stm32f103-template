@@ -4,7 +4,7 @@ STARTUP = $(CMSIS)/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.
 SYSTEM  = $(CMSIS)/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c
 
 # list of source files
-SOURCES  = main.o os.o
+SOURCES  = main.o os.o GPIO.o
 
 # name for output binary files
 PROJECT ?= led

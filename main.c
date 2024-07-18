@@ -10,20 +10,18 @@ void delay(int millis) {
 }
 
 int main() {
-    // enable GPIOC port
-    RCC->APB2ENR |= (1<<4);
-    
-    // --- GPIO setup ----
-    GPIOC->CRH |=  (1<<21);
-    GPIOC->CRH &= ~(1<<20);
-    GPIOC->CRH &= ~(1<<23);
-    GPIOC->CRH &= ~(1<<22);
+    GPIO_TYPE myGPIO;
 
-    // main loop
+    myGPIO.port = GPIOA;
+    myGPIO.pin = 1;
+    myGPIO.mode = OUTPUT_MODE;
+    myGPIO.mode_type = OUTPUT_GEN_PURPOSE;
+    myGPIO.speed = SPEED_2MHZ;
+
+    gpio_init(myGPIO);
+    
     for(;;) {
-        GPIOC->BSRR = (1<<13);
-        delay(250);
-        GPIOC->BSRR = (1<<29);
+        gpio_toggle(GPIOA, 1);
         delay(250);
     }
 }
